@@ -1,0 +1,48 @@
+<%- include('navbar') -%>
+<body>
+    <form style=" background-color: #eee; padding:5%; border-radius:5px;" method="POST">
+
+        <div style="width: 100%;justify-content: center; align-items: center; text-align: center;"><h1>Editing Profile </h1></div>
+        <% if(error=="ER_DUP_ENTRY"){ %>
+            <div class="alert alert-danger" role="alert">
+            Account already exist. Please sign in
+              </div>
+              <% } else if(error){ %>
+  <div class="alert alert-danger" role="alert">
+               User or password is incorrect.
+              </div>
+<%    } %>
+        <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter username" value="<%= data[0].username %>" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" aria-describedby="emailHelp" placeholder="Enter password" value="<%= data[0].password %>" name="password" required>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="fname">Firstname</label>
+            <input type="text" class="form-control" id="fname" aria-describedby="emailHelp" placeholder="Enter first name" value="<%= data[0].fname %>" name="fname" required>
+        </div>
+        <div class="col">
+            <label for="lname">Lastname</label>
+            <input type="text" class="form-control" id="lname" aria-describedby="emailHelp" placeholder="Enter lastname" value="<%= data[0].lname %>" name="lname" required>
+        </div>
+    </div>
+    <!-- Allows user to create account (username, password, first name,
+last name, contact number, email) -->
+
+    <div class="form-group">
+      <label for="Contact number">Contact Number</label>
+      <input type="number" class="form-control" id="Contact number" placeholder="Enter contact number" value="<%= data[0].contactno %>" name="contactno" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="<%= data[0].email %>" name="email" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Edit Profile</button>
+      </form>
+
+</div>
+</body>

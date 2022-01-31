@@ -1,0 +1,190 @@
+<%- include('navbar') -%>
+
+<!-- Full screen modal -->
+
+
+    <div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Updating Application Form</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <% if(data!=null) { %>
+                <h3 style="text-align: center;">Your Order List </h1>
+                  <label for="dateholder">Order ID</label>
+                  <input type="text" class="form-control" id="dateholder" name="dateholder" disabled>
+            <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Food Item</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Date</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                       
+                        <% var existing_grp="";
+                        for (let i = 0; i < other_data.length; i++) {
+                            if (existing_grp=true){
+                             
+                            %>
+                           
+                            <tr class="table-primary">
+                            <%  } else{ %>
+                                <tr class="table-warning">
+                                    <% } %>
+                                <th scope="row"><%= i+1 %></th>
+                                <td><%= other_data[i].food_name %></td>
+                                <td><%= other_data[i].quantity %></td>
+                                <td class="order_dates"><%= other_data[i].order_date %></td>
+                                
+                                 <% if(other_data[i].status =="pending"){
+                                     %>
+                               
+                              
+                                   
+                              </tr>
+                              <%  } else if(other_data[i].status=="declined") { %>
+                                <td><a class="btn btn-danger pull-left" disabled style="color: white; ">Declined</a>
+                                <%  } else { %>
+                                    <td><a class="btn btn-success pull-left" disabled style="color: white; ">Approved</a>
+                      <%  } } } else { %>
+                        <h3 style="text-align: center;">You currently do not have any record.</h1>
+            <% } %>
+                     
+                    </tbody>
+                  </table>
+            </div>
+     
+          </div>
+        </div>
+  </div>
+ 
+<div class="card" style="width:100%;">
+    <div class="card-body">
+        <% if(locals.operation!=null && locals.operation=="add"){ %>
+            <div class="alert alert-success" role="alert">
+            Character added. Please wait for an admin to approve it.
+              </div>
+              <% } else if(operation=="edit"){ %>
+  <div class="alert alert-danger" role="alert">
+              Edited.
+              </div>
+<%    } %>
+      <h1 class="card-title">Hello, <%= locals.user_data.username.name|| "World" %></h5>
+      <h6 class="card-subtitle mb-2 text-muted">This is your dashboard</h6>
+      <p class="card-text">This is where you can see your application status</p>
+ 
+      <div class="card-group">
+        <div class="card border-primary mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Settings</h5>
+            <p class="card-text">Edit your user profile.</p>
+            <a href="/editprofile/<%= user_data.userid.id %>" class="card-link">Edit Profile</a>
+         
+          </div>
+         
+        </div>
+        <% if (user_data.role.role=="admin"){ %>
+        <div class="card border-primary mb-3">
+            <div class="card-body">
+              <h5 class="card-title">User Dashboard</h5>
+              <p class="card-text">You can access user dashboard here.</p>
+              <a href="/user_homepage" class="card-link">Go to Admin Dashboard</a>
+           
+            </div>
+            </div>
+     <% } %>
+      </div>
+    
+      <begin>
+ 
+            <% if(data!=null) { %>
+                <h3 style="text-align: center;">Your Application</h1>
+            <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Order Date</th>
+                       
+                        <th scope="col">Publish Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                       
+                        <% for (let i = 0; i < data.length; i++) {
+                            if (data[i].status=="approved"){
+                            %>
+                            <tr class="table-primary">
+                            <%  } else{ %>
+                                <tr class="table-warning">
+                                    <% } %>
+                                <th scope="row"><%= i+1 %></th>
+                                <td><%= data[i].order_date %></td>
+                               
+                                 <% if(data[i].status =="pending"){
+                                     %>
+                               
+                                <td><a class="btn btn-secondary pull-left" disabled style="color: white; ">Pending</a>
+                                    <a class="btn btn-info pull-left" style="color: white; " href="/vieworder/<%= data[i].order_group %>" >View</a>
+                                    <a class="btn btn-primary pull-left" style="color: white; " href="/approve/<%= data[i].order_group %>" >Finish</a>
+                                    <a class="btn btn-primary pull-left" style="color: white; " href="/deliver/<%= data[i].order_group %>" >Being Delivered</a>
+                                    <a class="btn btn-danger pull-left" style="color: white; " href="/decline/<%= data[i].order_group %>" >Decline</a>
+                              </tr>
+                              <%  } else if(data[i].status=="declined") { %>
+                                <td><a class="btn btn-danger pull-left" disabled style="color: white; ">Declined</a>
+                                <%  } else if(data[i].status=="deliver") { %>
+                                <td> <a class="btn btn-secondary pull-left" disabled style="color: white; ">Delivering</a>
+                                  <a class="btn btn-primary pull-left" style="color: white; " href="/approve/<%= data[i].order_group %>" >Finish</a>
+                                  
+                                <%  } else { %>
+                                    <td><a class="btn btn-success pull-left" disabled style="color: white; ">Approved</a>
+                      <%  } } } else { %>
+                        <h3 style="text-align: center;">You currently do not have any record.</h1>
+            <% } %>
+                     
+                    </tbody>
+                  </table>
+</begin>
+   
+  </div>
+</body>
+  <script type="text/javascript">
+  if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+   
+     
+ 
+    $("#modal_update").on("submit",(e)=>{
+        // alert("pumasok")
+ 
+        e.preventDefault();
+        $.ajax({
+            type:"POST",
+            url:"/update",
+            dataType:"json",
+            data:$('form#update').serializeArray(),
+            success:()=>{
+                location.reload(true);
+            }
+        });
+    });
+ 
+    const updateData=(data)=>
+    {
+   
+        // alert("Hello"+data.id)
+        $(`input[name=dateholder]`).val(data.order_group);
+        var text_price = $('.table').find(`#order_dates`).text(); 
+        alert($("#dateholder").val());
+       
+    }
+ 
+    </script>

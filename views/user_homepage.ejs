@@ -1,0 +1,347 @@
+<%- include('navbar') -%>
+<!-- Full screen modal -->
+
+<div class="modal fade " id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Application</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form id="add" method="POST">
+                <div class="row">
+                    <div class="col">
+                    <label for="fname">First Name</label>
+                    <input type="text" class="form-control" id="fname" name="fname" value="<%= user_data.fname.name %>" disabled required>
+                 
+                 </div>
+                 <div class="col">
+                    <label for="mname">Middle Name</label>
+                    <input type="text" class="form-control" id="mname" name="mname" required>
+                  </div></div>
+                  <div class="form-group">
+                    <label for="lname">Last Name</label>
+                    <input type="text" class="form-control" id="lname" name="lname" value="<%= user_data.lname.name %>"  disabled required>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                    <label for="paddress">Present Address</label>
+                    <input type="text" class="form-control" id="paddress" name="paddress" required>
+                 
+                 </div>
+                 <div class="col">
+                    <label for="nationality">nationality</label>
+                    <input type="text" class="form-control" id="nationality" name="nationality" required>
+                  </div></div>
+                  <div class="row">
+                    <div class="col">
+                    <label for="sex">Sex</label>
+                    <input type="text" class="form-control" id="sex" name="sex" required>
+                 
+                 </div>
+                 <div class="col">
+                    <label for="birthdate">Birthdate</label>
+                    <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+                  </div></div>
+                  <div class="row">
+                    <div class="col">
+                    <label for="height">Height</label>
+                    <input type="text" class="form-control" id="height" name="height" required>
+                 
+                 </div>
+                 <div class="col">
+                    <label for="weight">weight</label>
+                    <input type="text" class="form-control" id="weight" name="weight" required>
+                  </div>
+                  <div class="col">
+                    <label for="civilstat">Civil Status</label>
+                    <input type="text" class="form-control" id="civilstat" name="civilstat" required>
+                  </div></div>
+                  <div class="row">
+                    <div class="col">
+                    <label for="licenseclass">License Class</label>
+                    <input type="text" class="form-control" id="licenseclass" name="licenseclass" required>
+                 
+                 </div>
+                 <div class="col">
+                    <label for="drivingskillacquired">Driving Skill Acquired</label>
+                    <input type="text" class="form-control" id="drivingskillacquired" name="drivingskillacquired" required>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                    <label for="highesteducational">Highest Educational Attainment</label>
+                    <input type="text" class="form-control" id="highesteducational" name="highesteducational" required>
+                 
+                 </div>
+                 <div class="col">
+                    <label for="bloodtype">Blood Type</label>
+                    <input type="text" class="form-control" id="bloodtype" name="bloodtype" required>
+                  </div>
+                </div>
+                  <div class="form-group">
+                    <label for="organdonor">organ donor</label>
+                    <input type="text" class="form-control" id="organdonor" name="organdonor" required>
+                  </div>
+
+                  <div class="row">
+                      <div class="col">
+                          <label for="eyecolor">Eye Color</label>
+                          <input type="text" class="form-control" id="eyecolor" placeholder="Enter first name" name="eyecolor" required>
+                      </div>
+                      <div class="col">
+                          <label for="typeofapplication">type of application</label>
+                          <input type="text" class="form-control" id="typeofapplication"  placeholder="Enter lastname" name="typeofapplication" required>
+                      </div>
+                     
+                   
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                        <label for="fathername">father name</label>
+                        <input type="text" class="form-control" id="fathername" placeholder="Enter first name" name="fathername" required>
+                    </div>
+                    <div class="col">
+                        <label for="mothername">mother name</label>
+                        <input type="text" class="form-control" id="mothername"  placeholder="Enter lastname" name="mothername" required>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="spousename	">spouse name	</label>
+                            <input type="text" class="form-control" id="spousename" placeholder="Enter first name" name="spousename" required>
+                        </div>
+                        <div class="col">
+                            <label for="emercontact">emergency contact</label>
+                            <input type="text" class="form-control" id="emercontact"  placeholder="Enter lastname" name="emercontact" required>
+                        </div>
+                 
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="vehiclecat">vehiclecat</label>
+                        <input type="text" class="form-control" id="vehiclecat" placeholder="Enter first name" name="vehiclecat" required>
+                    </div>
+                    <div class="col">
+                        <label for="conditions">conditions</label>
+                        <input type="text" class="form-control" id="conditions"  placeholder="Enter lastname" name="conditions" required>
+                    </div>
+             
+            </div>
+                <div class="form-group" style="padding-top: 5%;">
+                    <button type="submit"  class="btn btn-primary w-100">Submit Application</button>
+                  </div>
+                </div>
+                 
+     
+                   
+                 
+              </form>
+        </div>
+ 
+      </div>
+    </div>
+    <div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Updating Application Form</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <% if(data!=null) { %>
+                <h3 style="text-align: center;">Your Order List </h1>
+                  <label for="dateholder">Order ID</label>
+                  <input type="text" class="form-control" id="dateholder" name="dateholder" disabled>
+            <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Food Item</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Date</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                       
+                        <% var existing_grp="";
+                        for (let i = 0; i < other_data.length; i++) {
+                            if (existing_grp=true){
+                             
+                            %>
+                           
+                            <tr class="table-primary">
+                            <%  } else{ %>
+                                <tr class="table-warning">
+                                    <% } %>
+                                <th scope="row"><%= i+1 %></th>
+                                <td><%= other_data[i].food_name %></td>
+                                <td><%= other_data[i].quantity %></td>
+                                <td class="order_dates"><%= other_data[i].order_date %></td>
+                                
+                                 <% if(other_data[i].status =="pending"){
+                                     %>
+                               
+                              
+                                   
+                              </tr>
+                              <%  } else if(other_data[i].status=="declined") { %>
+                                <td><a class="btn btn-danger pull-left" disabled style="color: white; ">Declined</a>
+                                <%  } else { %>
+                                    <td><a class="btn btn-success pull-left" disabled style="color: white; ">Approved</a>
+                      <%  } } } else { %>
+                        <h3 style="text-align: center;">You currently do not have any record.</h1>
+            <% } %>
+                     
+                    </tbody>
+                  </table>
+            </div>
+     
+          </div>
+        </div>
+  </div>
+ 
+<div class="card" style="width:100%;">
+    <div class="card-body">
+        <% if(locals.operation!=null && locals.operation=="add"){ %>
+            <div class="alert alert-success" role="alert">
+            Character added. Please wait for an admin to approve it.
+              </div>
+              <% } else if(operation=="edit"){ %>
+  <div class="alert alert-danger" role="alert">
+              Edited.
+              </div>
+<%    } %>
+      <h1 class="card-title">Hello, <%= locals.user_data.username.name|| "World" %></h5>
+      <h6 class="card-subtitle mb-2 text-muted">This is your dashboard</h6>
+      <p class="card-text">This is where you can see your application status</p>
+ 
+      <div class="card-group">
+        <div class="card border-primary mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Add Application</h5>
+            <p class="card-text">You can add an application for your registration</p>
+            <% if(data!=null && data[0].status=="pending"){   %> 
+                <a href="" class="card-link text-muted" disabled >Pending Application</a>
+                 <% } else if(data!=null && data[0].status=="approved") { %> 
+                    <a href="" class="card-link text-muted" disabled >Approved</a>
+                    <% } else { %>
+                        <a href="" class="card-link" data-toggle="modal" data-target="#exampleModalLong" >Add Application</a>
+            <% } %>
+          </div>
+        </div>
+ 
+        <div class="card border-primary mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Settings</h5>
+            <p class="card-text">Edit your user profile.</p>
+            <a href="/editprofile/<%= user_data.userid.id %>" class="card-link">Edit Profile</a>
+         
+          </div>
+         
+        </div>
+        <div class="card border-primary mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Add Order</h5>
+            <p class="card-text">Add an Order</p>
+            <a href="/order" class="card-link">Add an Order</a>
+         
+          </div>
+         
+        </div>
+      </div>
+      <% if (user_data.role.role=="admin"){ %>
+        <div class="card border-primary mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Admin Dashboard</h5>
+              <p class="card-text">You can access admin dashboard here.</p>
+              <a href="/admin_homepage" class="card-link">Go to Admin Dashboard</a>
+           
+            </div>
+            </div>
+     <% } %>
+      <begin>
+ 
+            <% if(data!=null) { %>
+                <h3 style="text-align: center;">Your Application</h1>
+            <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Order Date</th>
+                       
+                        <th scope="col">Publish Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                       
+                        <% for (let i = 0; i < data.length; i++) {
+                            if (data[i].status=="approved"){
+                            %>
+                            <tr class="table-primary">
+                            <%  } else{ %>
+                                <tr class="table-warning">
+                                    <% } %>
+                                <th scope="row"><%= i+1 %></th>
+                                <td><%= data[i].order_date %></td>
+                               
+                                 <% if(data[i].status =="pending"){
+                                     %>
+                               
+                                <td><a class="btn btn-secondary pull-left" disabled style="color: white; ">Pending</a>
+                                    <a class="btn btn-info pull-left" style="color: white; " href="/vieworder/<%= data[i].order_group %>" >View</a>
+                                   
+                              </tr>
+                              <%  } else if(data[i].status=="declined") { %>
+                                <td><a class="btn btn-danger pull-left" disabled style="color: white; ">Declined</a>
+                                <%  } else { %>
+                                    <td><a class="btn btn-success pull-left" disabled style="color: white; ">Approved</a>
+                      <%  } } } else { %>
+                        <h3 style="text-align: center;">You currently do not have any record.</h1>
+            <% } %>
+                     
+                    </tbody>
+                  </table>
+</begin>
+   
+  </div>
+  <script type="text/javascript">
+  if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+   
+     
+ 
+    $("#modal_update").on("submit",(e)=>{
+        // alert("pumasok")
+ 
+        e.preventDefault();
+        $.ajax({
+            type:"POST",
+            url:"/update",
+            dataType:"json",
+            data:$('form#update').serializeArray(),
+            success:()=>{
+                location.reload(true);
+            }
+        });
+    });
+ 
+    const updateData=(data)=>
+    {
+   
+        // alert("Hello"+data.id)
+        $(`input[name=dateholder]`).val(data.order_group);
+        var text_price = $('.table').find(`#order_dates`).text(); 
+        alert($("#dateholder").val());
+       
+    }
+ 
+ 
+    </script>

@@ -1,0 +1,84 @@
+<%- include('navbar') -%>
+<div class="container" style="float: center; padding-top: 5%;">
+ 
+   
+ 
+    <div class="card bg-light mb-3" style="width:100%">
+        <div class="card-header">Order Food</div>
+        <div class="card-body">
+          <h5 class="card-title">Let's Order Food!</h5>
+          <p class="card-text">Ordering food will help you eat</p>
+          <form method="POST">
+            <% if(error=="ER_DUP_ENTRY"){ %>
+            <div class="alert alert-danger" role="alert">
+            Account already exist. Please sign in
+              </div>
+              <% } else if(error){ %>
+  <div class="alert alert-danger" role="alert">
+              Food error.
+              </div>
+<%    } %>
+           
+            <div class="container">
+                <div class="row">
+                  <div class="col-12">
+                      <table class="table table-image">
+                        <thead>
+                          <tr>
+                            <th scope="col">Food #</th>
+                
+                            <th scope="col">Food Item</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let i = 0; i < other_data.length; i++) { %>
+                          <tr>
+                            <th scope="row" id="id<%=i+1 %>"><%= i+1 %></th>
+                        
+                            <td id="name<%=i+1 %>"><%= other_data[i].food_name %></td>
+                            <td id="price<%=i+1 %>"><%= other_data[i].food_price %></td>
+                            <td id="quantity<%=i+1 %>"><%= other_data[i].quantity %></td>
+                           
+                            <!-- <td class="price1" name="price" id="price1">913</td>
+                            <td><input type="number" id="quantity1" name="quantity1" min="1" max="3" ></td> -->
+                          </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+     
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="cash">Mode of Delivery</label>
+                            <input type="text" class="form-control" readonly value= <%= other_data[0].mods  %> >
+                        </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="password">Purchased</label>
+                                <input type="text" readonly class="form-control"  value= <%= other_data[0].purchased  %> >
+                            </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="change">Mode Of Payment</label>
+                                    <input type="text" disabled class="form-control" readonly value="<%= other_data[0].mop %>">
+                                </div>
+                                </div>  </div>
+              
+ 
+         
+          </form>
+        </div>
+   
+ 
+     
+      </div>
+

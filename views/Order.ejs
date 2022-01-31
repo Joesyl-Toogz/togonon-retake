@@ -1,0 +1,157 @@
+<%- include('navbar') -%>
+<div class="container" style="float: center; padding-top: 5%;">
+ 
+   
+ 
+    <div class="card bg-light mb-3" style="width:100%">
+        <div class="card-header">Order Food</div>
+        <div class="card-body">
+          <h5 class="card-title">Let's Order Food!</h5>
+          <p class="card-text">Ordering food will help you eat</p>
+          <form method="POST">
+            <% if(error=="ER_DUP_ENTRY"){ %>
+            <div class="alert alert-danger" role="alert">
+            Account already exist. Please sign in
+              </div>
+              <% } else if(error){ %>
+  <div class="alert alert-danger" role="alert">
+              Food error.
+              </div>
+<%    } %>
+           
+            <div class="container">
+                <div class="row">
+                  <div class="col-12">
+                      <table class="table table-image">
+                        <thead>
+                          <tr>
+                            <th scope="col">Food ID</th>
+                
+                            <th scope="col">Food Item</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">To Purchase</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let i = 0; i < data.length; i++) { %>
+                          <tr>
+                            <th scope="row" id="id<%=i+1 %>"><%= data[i].id %></th>
+                        
+                            <td id="name<%=i+1 %>"><%= data[i].food_name %></td>
+                            <td id="price<%=i+1 %>"><%= data[i].food_price %></td>
+                            <td id="quantity<%=i+1 %>"><%= data[i].food_quantity %></td>
+                            <td ><input type="number" id="quan_purchased<%=i+1 %>" name="quantity" min="0" max=<%= data[i].food_quantity %> ></td>
+                            <!-- <td class="price1" name="price" id="price1">913</td>
+                            <td><input type="number" id="quantity1" name="quantity1" min="1" max="3" ></td> -->
+                          </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+     
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="cash">Cash</label>
+                            <input type="text" class="form-control" id="cash" placeholder="Total Cash" name="cash" required value=0>
+                        </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="password">Purchased</label>
+                                <input type="text" class="form-control" id="purchased" placeholder="Total Purchase" name="purchased" readonly>
+                            </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="change">Change</label>
+                                    <input type="text" class="form-control" id="change" placeholder="Total change" name="change" readonly>
+                                </div>
+                                </div>  </div>
+              
+            <div class="form-group">
+                <label for="payment">Mode of Payment</label>
+                <select name="mop" id="mop">
+                    <option value="Gcash">Gcash</option>
+                    <option value="Paymaya">Paymaya</option>
+                  </select>
+                  <label for="payment">Mode of Delivery</label>
+                  <select name="mod" id="mod">
+                      <option value="pickup">Pick-Up</option>
+                      <option value="delivery">Delivery</option>
+                    </select>
+
+            </div>
+           <input type="text" hidden name="purchased_array" id="purchased_array" >
+           <input type="text" hidden name="id_array" id="id_array" >
+            <button type="submit" class="btn btn-primary w-30">Create Order</button>
+          </form>
+        </div>
+   
+ 
+     
+      </div>
+
+<script>
+    
+   $('form').on('keyup change paste', 'input, select, textarea', function(){
+    
+    var total= <%= data.length %> ;
+    
+    <%  new_arr=[] ;
+    for (let i = 0; i < data.length; i++) {
+        new_arr.push(data[i].id)
+        
+     } %>
+    
+    var prices=[];
+    var food_ids=[];
+    var purchases=[];
+    var purchased=[];
+    var sums=[];
+    for (let i = 0; i < total; i++) {
+        var text_price = $('.table').find(`#price${i+1}`).text(); 
+        var text_id = $('.table').find(`#id${i+1}`).text(); 
+        prices=parseInt(text_price)
+        var text_purchased=parseInt($(`#quan_purchased${i+1}`).val());
+        
+        if (isNaN(text_purchased)){
+            purchases=0.0
+            purchased.push(purchases)
+            food_ids.push(0)
+        }else{
+            purchases=parseInt(text_purchased)
+            food_ids.push(parseInt(text_id))
+            purchased.push(purchases)
+            
+        }
+        
+        sums.push(prices*purchases)
+       
+    }
+    var sum=0;
+    
+    for (let i = 0; i < sums.length; i++) {
+    sum += sums[i];
+    
+}
+    // alert("Sum"+sum)
+    // var price = $('.table').find("#price1").text();  
+    // var sum=parseInt(price)*parseInt($("#quantity1").val());
+// alert(purchases)
+// Assign sum to third textbox
+var cashes=parseInt($("#cash").val());
+$("#purchased").val(sum);
+var change_sum=cashes-sum
+
+$("#purchased_array").val(purchased);
+$("#id_array").val(food_ids);
+$("#change").val(change_sum);
+});
+
+
+</script>
